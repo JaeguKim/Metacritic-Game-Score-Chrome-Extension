@@ -13,10 +13,10 @@ dict["switchCheck"] = document.getElementById("switchCheck");
 
 document.addEventListener('DOMContentLoaded', function() {
  dict["confirmBtn"].addEventListener("click", confirmBtnEvent);
- dict["pcCheck"].addEventListener("click", CheckEvent(dict["pcCheck"].id),{capture:true});
- dict["ps4Check"].addEventListener("click", CheckEvent(dict["ps4Check"].id),{capture:true});
- dict["xboxCheck"].addEventListener("click", CheckEvent(dict["xboxCheck"].id),{capture:true});
- dict["switchCheck"].addEventListener("click", CheckEvent(dict["switchCheck"].id)),{capture:true};
+ dict["pcCheck"].addEventListener("click", CheckEvent);
+ dict["ps4Check"].addEventListener("click", CheckEvent);
+ dict["xboxCheck"].addEventListener("click", CheckEvent);
+ dict["switchCheck"].addEventListener("click", CheckEvent);
 });
 
 function DEBUG(message) {
@@ -24,15 +24,12 @@ function DEBUG(message) {
   bkg.console.log(message);
 }
 
-function CheckEvent(selectCheckboxId) {
-  DEBUG(selectCheckboxId);
-  /*
+function CheckEvent() {
   for(var key in dict) {
-    var id = dict[key];
-    if (id != selectCheckboxId)
-      id.checked = false;
+    var id = dict[key].id;
+    if (id != this.id)
+      dict[key].checked = false;
   }
-  */
 }
 
 function confirmBtnEvent() {
