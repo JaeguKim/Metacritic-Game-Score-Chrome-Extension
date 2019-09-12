@@ -13,10 +13,10 @@ dict["switchCheck"] = document.getElementById("switchCheck");
 
 document.addEventListener('DOMContentLoaded', function() {
  dict["confirmBtn"].addEventListener("click", confirmBtnEvent);
- dict["pcCheck"].addEventListener("click", CheckEvent(dict["pcCheck"].id));
- dict["ps4Check"].addEventListener("click", CheckEvent(dict["ps4Check"].id));
- dict["xboxCheck"].addEventListener("click", CheckEvent(dict["xboxCheck"].id));
- dict["switchCheck"].addEventListener("click", CheckEvent(dict["switchCheck"].id));
+ dict["pcCheck"].addEventListener("click", CheckEvent(dict["pcCheck"].id),{capture:true});
+ dict["ps4Check"].addEventListener("click", CheckEvent(dict["ps4Check"].id),{capture:true});
+ dict["xboxCheck"].addEventListener("click", CheckEvent(dict["xboxCheck"].id),{capture:true});
+ dict["switchCheck"].addEventListener("click", CheckEvent(dict["switchCheck"].id)),{capture:true};
 });
 
 function DEBUG(message) {
