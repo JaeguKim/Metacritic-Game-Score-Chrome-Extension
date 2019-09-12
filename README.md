@@ -1,5 +1,6 @@
 # Metacritic-Game-Score-Chrome-Extension
 - [ ] Add checkbox setting for platform
+- [ ] Detect enter key
 - [ ] Decorate
 - [ ] Publish
 - [x] metacritic api request, and print in p tag
