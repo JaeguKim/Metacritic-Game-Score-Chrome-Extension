@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function DEBUG(message) {
   var bkg = chrome.extension.getBackgroundPage();
-  bkg.console.log(message);
+  chrome.extension.getBackgroundPage().console.log(message);
 }
 
 function CheckEvent() {

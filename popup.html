@@ -8,15 +8,13 @@
       position: relative;
       vertical-align:middle;
     }
-
     td {
       text-align: center;
     }
     </style >
   </head>
   <body>
-      <h3>Input game title to search metacritic score!</h3><br>
-      <p>Press the "Enter" key inside the input field to trigger the button.</p>
+      <p style="text-align:center;"><img src="dark_logo.png" class="centerImage"></p>
       <input id="gameTitle" value="Example : &quot;Gears 5&quot;">
       <input type="checkbox" name="Pc" id="pcCheck">PC<br>
       <input type="checkbox" name="Ps4" id="ps4Check">PS4<br>
@@ -25,6 +23,7 @@
       <button id="confirmBtn">Confirm</button>
       <table style="width:100%">
         <tr>
+          <th>Game Image</th>
           <th>Platform</th>
           <th>Name</th> 
           <th>Score</th>
@@ -32,9 +31,10 @@
         </tr>
         <tr>
           <td><img src="https://static.metacritic.com/images/products/games/8/1338939ad59cd79ce0751b0d4b44de7e-98.jpg"></td>
-          <td>Smith</td>
-          <td>50</td>
-          <td>13hour</td>
+          <td>PS4</td>
+          <td>Death Stranding</td>
+          <td>83</td>
+          <td>13:00</td>
         </tr>
       </table>
     <p id = "content"></p>
