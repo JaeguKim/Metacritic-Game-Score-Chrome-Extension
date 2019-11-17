@@ -61,7 +61,5 @@ function confirmBtnEvent() {
   xhr.setRequestHeader("x-rapidapi-host", "chicken-coop.p.rapidapi.com");
   xhr.setRequestHeader("x-rapidapi-key", "c976920022msha45b1a7b96d279ap17e7aejsne930cb2ce86d");
   xhr.send(data);
-
-  
 }
 
