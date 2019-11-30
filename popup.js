@@ -5,7 +5,8 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function() {
-  GetAllGameInfo("Death Stranding");
+  //GetAllGameInfo("Death Stranding");
+  GetAllGameInfo("Halo");
 });
 
 function DEBUG(message) {
@@ -23,9 +24,10 @@ function GetAllGameInfo(gameTitle,data)
     }
     else if (xhr.readyState == 4) {
       xhr.response.result.forEach(function(item){
+          var resultTitle = item["title"];
           var platform = item["platform"];
           DEBUG(`platform is ${platform}`);
-          GetEachScore(gameTitle,platform);
+          GetEachScore(resultTitle,platform);
         });
       return xhr.response.result;
     }
@@ -66,7 +68,7 @@ function GetEachScore(gameTitle, platform) {
   }
   else if (platform == "XONE")
   {
-    convPlatformStr = "xbox"
+    convPlatformStr = "xbox-one"
   }
   else if (platform == "Switch")
   {
