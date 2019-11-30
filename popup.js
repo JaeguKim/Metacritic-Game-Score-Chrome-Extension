@@ -68,7 +68,15 @@ function GetEachScore(gameTitle, platform) {
   }
   else if (platform == "XONE")
   {
-    convPlatformStr = "xbox-one"
+    convPlatformStr = "xbox-one";
+  }
+  else if (platform == "X360")
+  {
+    convPlatformStr = "xbox-360";
+  }
+  else if (platform == "XBOX")
+  {
+    convPlatformStr = "xbox";
   }
   else if (platform == "Switch")
   {
