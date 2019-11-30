@@ -6,7 +6,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   //GetAllGameInfo("Death Stranding");
-  GetAllGameInfo("Halo");
+  //GetAllGameInfo("Halo");
+  GetAllGameInfo("Modern Warfare");
 });
 
 function DEBUG(message) {
@@ -61,6 +62,10 @@ function GetEachScore(gameTitle, platform) {
   if (platform == "PS4")
   {
     convPlatformStr = "playstation-4";
+  }
+  else if (platform == "PS3")
+  {
+    convPlatformStr = "playstation-3";
   }
   else if (platform == "PC")
   {
