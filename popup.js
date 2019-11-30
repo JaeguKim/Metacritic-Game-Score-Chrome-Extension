@@ -23,8 +23,10 @@ function GetAllGameInfo(gameTitle,data)
     }
     else if (xhr.readyState == 4) {
       xhr.response.result.forEach(function(item){
-          DEBUG(`title is ${item["title"]}, platform is ${item["platform"]}`);
-      });
+          var platform = item["platform"];
+          DEBUG(`platform is ${platform}`);
+          GetEachScore(gameTitle,platform);
+        });
       return xhr.response.result;
     }
   }
@@ -38,8 +40,6 @@ function GetAllGameInfo(gameTitle,data)
 }
 
 function GetEachScore(gameTitle, platform) {
-  var gameTitle = document.getElementById("gameTitle").value;
-
   var data = null;
 
   var xhr = new XMLHttpRequest();
@@ -50,11 +50,28 @@ function GetEachScore(gameTitle, platform) {
     }
     else if (xhr.readyState == 4) {
       let score = xhr.response.result.score;
-      DEBUG(score);
+      DEBUG(`${gameTitle}'s score is ${score}`);
     }
   }
   var modifiedGameTitle = gameTitle.replace(" ","%20");
-  var requestURI = `https://chicken-coop.p.rapidapi.com/games/${modifiedGameTitle}?platform=pc`;
+  var convPlatformStr;
+  if (platform == "PS4")
+  {
+    convPlatformStr = "playstation-4";
+  }
+  else if (platform == "PC")
+  {
+    convPlatformStr = "pc";
+  }
+  else if (platform == "XONE")
+  {
+    convPlatformStr = "xbox"
+  }
+  else if (platform == "Switch")
+  {
+    convPlatformStr = "switch";
+  }
+  var requestURI = `https://chicken-coop.p.rapidapi.com/games/${gameTitle}?platform=${convPlatformStr}`;
   xhr.open("GET", requestURI);
   xhr.responseType = 'json';
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
