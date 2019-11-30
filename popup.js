@@ -4,19 +4,8 @@
 
 'use strict';
 
-var dict = {};
-dict["confirmBtn"] = document.getElementById("confirmBtn");
-dict["pcCheck"] = document.getElementById("pcCheck");
-dict["ps4Check"] = document.getElementById("ps4Check");
-dict["xboxCheck"] = document.getElementById("xboxCheck");
-dict["switchCheck"] = document.getElementById("switchCheck");
-
 document.addEventListener('DOMContentLoaded', function() {
- dict["confirmBtn"].addEventListener("click", confirmBtnEvent);
- dict["pcCheck"].addEventListener("click", CheckEvent);
- dict["ps4Check"].addEventListener("click", CheckEvent);
- dict["xboxCheck"].addEventListener("click", CheckEvent);
- dict["switchCheck"].addEventListener("click", CheckEvent);
+  GetAllGameInfo("Death Stranding");
 });
 
 function DEBUG(message) {
@@ -24,12 +13,25 @@ function DEBUG(message) {
   chrome.extension.getBackgroundPage().console.log(message);
 }
 
-function CheckEvent() {
-  for(var key in dict) {
-    var id = dict[key].id;
-    if (id != this.id)
-      dict[key].checked = false;
+function GetAllGameInfo(gameTitle,data)
+{
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+  
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 1) {
+    }
+    else if (xhr.readyState == 4) {
+      DEBUG(xhr.response.result);
+    }
   }
+  var requestURI = `https://chicken-coop.p.rapidapi.com/games?title=${gameTitle}`;
+  xhr.open("GET", requestURI);
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+  xhr.setRequestHeader("x-rapidapi-host", "chicken-coop.p.rapidapi.com");
+  xhr.setRequestHeader("x-rapidapi-key", "c976920022msha45b1a7b96d279ap17e7aejsne930cb2ce86d");
+  xhr.send(data);
 }
 
 function confirmBtnEvent() {
