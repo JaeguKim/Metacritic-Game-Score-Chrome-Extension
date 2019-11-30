@@ -22,7 +22,10 @@ function GetAllGameInfo(gameTitle,data)
     if (xhr.readyState == 1) {
     }
     else if (xhr.readyState == 4) {
-      DEBUG(xhr.response.result);
+      xhr.response.result.forEach(function(item){
+          DEBUG(`title is ${item["title"]}, platform is ${item["platform"]}`);
+      });
+      return xhr.response.result;
     }
   }
   var requestURI = `https://chicken-coop.p.rapidapi.com/games?title=${gameTitle}`;
@@ -34,7 +37,7 @@ function GetAllGameInfo(gameTitle,data)
   xhr.send(data);
 }
 
-function confirmBtnEvent() {
+function GetEachScore(gameTitle, platform) {
   var gameTitle = document.getElementById("gameTitle").value;
 
   var data = null;
@@ -44,15 +47,10 @@ function confirmBtnEvent() {
   
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 1) {
-      document.getElementById('content').innerText = 'Loading...';
     }
     else if (xhr.readyState == 4) {
       let score = xhr.response.result.score;
       DEBUG(score);
-      if (score == null)
-        document.getElementById('content').innerText = `;-( cannot find that game...`;
-      else
-        document.getElementById('content').innerText = `${gameTitle}'s score is ${score}`;
     }
   }
   var modifiedGameTitle = gameTitle.replace(" ","%20");
