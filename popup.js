@@ -62,16 +62,29 @@ function GetAllGameInfo(gameTitle,data)
       {
         HideLoader();
         var row = table.insertRow();
-        var platformCell = row.insertCell();
-        platformCell.innerHTML = "No search results found.";
-        platformCell.style.fontSize = "14pt";
+        var indicator = row.insertCell();
+        indicator.innerHTML = "No search results found.";
+        indicator.style.fontSize = "14pt";
         return;
       }
+      var row = table.insertRow();
+      var imageURLCell = row.insertCell();
+      var platformCell = row.insertCell();
+      var titleCell = row.insertCell();
+      var scoreCell = row.insertCell();
+      imageURLCell.innerHTML = ``;
+      platformCell.innerHTML = "<b>platform</b>";
+      platformCell.style.fontSize = "18pt";
+      titleCell.innerHTML = "<b>title</b>";
+      titleCell.style.fontSize = "18pt";
+      scoreCell.innerHTML = "<b>score</b>";
+      scoreCell.style.fontSize = "18pt";
       xhr.response.result.forEach(function(item){
           var resultTitle = item["title"];
           var platform = item["platform"];
           GetEachScore(resultTitle,platform);
         });
+        HideLoader();
       return xhr.response.result;
     }
   }
@@ -144,17 +157,18 @@ function AddDataToTable(imgURL,platform,title,score,playTime)
   var platformCell = row.insertCell();
   var titleCell = row.insertCell();
   var scoreCell = row.insertCell();
-  var playTimeCell = row.insertCell();
-
-  imageURLCell.innerHTML = `<img src=${imgURL}>`;
+  //var playTimeCell = row.insertCell();
+  if (imgURL != null)
+    imageURLCell.innerHTML = `<img src=${imgURL}>`;
   platformCell.innerHTML = platform;
   platformCell.style.fontSize = "14pt";
   titleCell.innerHTML = title;
   titleCell.style.fontSize = "14pt";
-  scoreCell.innerHTML = score;
-  scoreCell.style.fontSize = "14pt";
-  playTimeCell.innerHTML = playTime;
-  playTimeCell.style.fontSize = "14pt";
-  HideLoader();
+  if (score != null){
+    scoreCell.innerHTML = score;
+    scoreCell.style.fontSize = "14pt";
+  }
+  //playTimeCell.innerHTML = playTime;
+  //playTimeCell.style.fontSize = "14pt";
 }
 
