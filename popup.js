@@ -4,28 +4,45 @@
 
 'use strict';
 
+var input;
 var loader;
+var table;
 
 document.addEventListener('DOMContentLoaded', function() {
-var input = document.getElementById("gameTitle");
+input = document.getElementById("gameTitle");
 loader = document.getElementById("loader");
+table = document.getElementById("resultTable");
+
 input.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
     // Cancel the default action, if needed
-    DEBUG("enter");
     event.preventDefault();
     // Trigger the button element with a click
     var gameTitle = input.value;
     DEBUG(gameTitle);
     if (gameTitle != ""){
-      DEBUG(loader);
-      loader.style.display = "block";
+      table.innerHTML = "";
+      ShowLoader();
       GetAllGameInfo(gameTitle);
     }
   }
 });
 });
+
+function ShowLoader()
+{
+  if (loader == null)
+    return;
+  loader.style.display = "block";
+}
+
+function HideLoader()
+{
+  if (loader == null)
+    return;
+  loader.style.display = "none";
+}
 
 function DEBUG(message) {
   var bkg = chrome.extension.getBackgroundPage();
@@ -41,7 +58,15 @@ function GetAllGameInfo(gameTitle,data)
     if (xhr.readyState == 1) {
     }
     else if (xhr.readyState == 4) {
-      loader.style.display = "none";
+      if (xhr.response.result == "No result")
+      {
+        HideLoader();
+        var row = table.insertRow();
+        var platformCell = row.insertCell();
+        platformCell.innerHTML = "No search results found.";
+        platformCell.style.fontSize = "14pt";
+        return;
+      }
       xhr.response.result.forEach(function(item){
           var resultTitle = item["title"];
           var platform = item["platform"];
@@ -67,15 +92,13 @@ function GetEachScore(gameTitle, platform) {
   
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 1) {
+     
     }
     else if (xhr.readyState == 4) {
       let result = xhr.response.result;
-
-      DEBUG(`${gameTitle}'s score is ${result.score}`);
       AddDataToTable(result.image,platform,gameTitle,result.score,"N/A")
     }
   }
-  var modifiedGameTitle = gameTitle.replace(" ","%20");
   var convPlatformStr;
   if (platform == "PS4")
   {
@@ -116,7 +139,6 @@ function GetEachScore(gameTitle, platform) {
 
 function AddDataToTable(imgURL,platform,title,score,playTime)
 {
-  var table = document.getElementById("resultTable");
   var row = table.insertRow();
   var imageURLCell = row.insertCell();
   var platformCell = row.insertCell();
@@ -126,8 +148,13 @@ function AddDataToTable(imgURL,platform,title,score,playTime)
 
   imageURLCell.innerHTML = `<img src=${imgURL}>`;
   platformCell.innerHTML = platform;
+  platformCell.style.fontSize = "14pt";
   titleCell.innerHTML = title;
+  titleCell.style.fontSize = "14pt";
   scoreCell.innerHTML = score;
+  scoreCell.style.fontSize = "14pt";
   playTimeCell.innerHTML = playTime;
+  playTimeCell.style.fontSize = "14pt";
+  HideLoader();
 }
 
