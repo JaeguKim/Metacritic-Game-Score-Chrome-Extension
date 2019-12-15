@@ -4,10 +4,27 @@
 
 'use strict';
 
+var loader;
+
 document.addEventListener('DOMContentLoaded', function() {
-  //GetAllGameInfo("Death Stranding");
-  //GetAllGameInfo("Halo");
-  GetAllGameInfo("Modern Warfare");
+var input = document.getElementById("gameTitle");
+loader = document.getElementById("loader");
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    DEBUG("enter");
+    event.preventDefault();
+    // Trigger the button element with a click
+    var gameTitle = input.value;
+    DEBUG(gameTitle);
+    if (gameTitle != ""){
+      DEBUG(loader);
+      loader.style.display = "block";
+      GetAllGameInfo(gameTitle);
+    }
+  }
+});
 });
 
 function DEBUG(message) {
@@ -24,10 +41,10 @@ function GetAllGameInfo(gameTitle,data)
     if (xhr.readyState == 1) {
     }
     else if (xhr.readyState == 4) {
+      loader.style.display = "none";
       xhr.response.result.forEach(function(item){
           var resultTitle = item["title"];
           var platform = item["platform"];
-          DEBUG(`platform is ${platform}`);
           GetEachScore(resultTitle,platform);
         });
       return xhr.response.result;
@@ -53,8 +70,9 @@ function GetEachScore(gameTitle, platform) {
     }
     else if (xhr.readyState == 4) {
       let result = xhr.response.result;
+
       DEBUG(`${gameTitle}'s score is ${result.score}`);
-      AddDataToTable(result.image,platform,gameTitle,result.score,"13:00")
+      AddDataToTable(result.image,platform,gameTitle,result.score,"N/A")
     }
   }
   var modifiedGameTitle = gameTitle.replace(" ","%20");
