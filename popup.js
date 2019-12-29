@@ -20,7 +20,7 @@ input.addEventListener("keyup", function(event) {
     event.preventDefault();
     // Trigger the button element with a click
     var gameTitle = input.value;
-    DEBUG(gameTitle);
+    //DEBUG(gameTitle);
     if (gameTitle != ""){
       table.innerHTML = "";
       ShowLoader();
