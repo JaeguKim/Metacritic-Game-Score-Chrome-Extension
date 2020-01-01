@@ -7,4 +7,4 @@
 - [x] add input tag and print score for input
 - [ ] add game time information data   
    
-   Now Metacirtic Game Score Chrome Extension is not available in chrome web store from [this link](https://chrome.google.com/webstore/detail/metacritic-game-score-inf/kpfebojieeemdihlmlndiaokfhmnojdp)
+Now Metacirtic Game Score Chrome Extension is not available in chrome web store from [this link](https://chrome.google.com/webstore/detail/metacritic-game-score-inf/kpfebojieeemdihlmlndiaokfhmnojdp)
