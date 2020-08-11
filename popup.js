@@ -44,10 +44,9 @@ function HideLoader()
   loader.style.display = "none";
 }
 
-function DEBUG(message) {
-  var bkg = chrome.extension.getBackgroundPage();
-  chrome.extension.getBackgroundPage().console.log(message);
-}
+// function DEBUG(message) {
+//   chrome.extension.getBackgroundPage().console.log(message);
+// }
 
 function GetAllGameInfo(gameTitle,data)
 {
@@ -55,9 +54,7 @@ function GetAllGameInfo(gameTitle,data)
   xhr.withCredentials = true;
   
   xhr.onreadystatechange = function() {
-    if (xhr.readyState == 1) {
-    }
-    else if (xhr.readyState == 4) {
+   if (xhr.readyState == 4) {
       if (xhr.response.result == "No result")
       {
         HideLoader();
@@ -104,10 +101,7 @@ function GetEachScore(gameTitle, platform) {
   xhr.withCredentials = true;
   
   xhr.onreadystatechange = function() {
-    if (xhr.readyState == 1) {
-     
-    }
-    else if (xhr.readyState == 4) {
+    if (xhr.readyState == 4) {
       let result = xhr.response.result;
       AddDataToTable(result.image,platform,gameTitle,result.score,"N/A")
     }
@@ -150,14 +144,13 @@ function GetEachScore(gameTitle, platform) {
   xhr.send(data);
 }
 
-function AddDataToTable(imgURL,platform,title,score,playTime)
+function AddDataToTable(imgURL,platform,title,score)
 {
   var row = table.insertRow();
   var imageURLCell = row.insertCell();
   var platformCell = row.insertCell();
   var titleCell = row.insertCell();
   var scoreCell = row.insertCell();
-  //var playTimeCell = row.insertCell();
   if (imgURL != null)
     imageURLCell.innerHTML = `<img src=${imgURL}>`;
   platformCell.innerHTML = platform;
@@ -168,7 +161,5 @@ function AddDataToTable(imgURL,platform,title,score,playTime)
     scoreCell.innerHTML = score;
     scoreCell.style.fontSize = "14pt";
   }
-  //playTimeCell.innerHTML = playTime;
-  //playTimeCell.style.fontSize = "14pt";
 }
 
