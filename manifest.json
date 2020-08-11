@@ -1,7 +1,7 @@
 {
   "name": "Metacritic Game Score Info Extension",
-  "version": "1.0",
-  "description": "Build an Extension!",
+  "version": "0.0.0.1",
+  "description": "This extension provides videogame's score in Metacritic website.",
   "permissions": ["activeTab", "declarativeContent", "storage","https://chicken-coop.p.rapidapi.com/"],
   "options_page": "options.html",
   "background": {
