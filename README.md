@@ -1,5 +1,5 @@
 # Metacritic-Game-Score-Chrome-Extension
-![](https://github.com/JaeguKim/Metacritic-Game-Score-Chrome-Extension/blob/master/gameScore.png | width=250) 
+<img src="https://github.com/JaeguKim/Metacritic-Game-Score-Chrome-Extension/blob/master/gameScore.png" width="48">
 [![CodeFactor](https://www.codefactor.io/repository/github/jaegukim/metacritic-game-score-chrome-extension/badge)](https://www.codefactor.io/repository/github/jaegukim/metacritic-game-score-chrome-extension)
 - [x] Detect enter key
 - [x] Decorate
